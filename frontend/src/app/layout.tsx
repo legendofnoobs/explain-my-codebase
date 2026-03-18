@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         locale: "en_US",
-        url: "https://repolens.ai",
+        url: "https://repolens1.vercel.app/",
         siteName: "RepoLens",
         title: "RepoLens | AI Repository Analyst",
         description: "Transform how you understand code. Instant architectural insights and visualization for any GitHub repository.",
