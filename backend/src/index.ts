@@ -11,6 +11,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Middleware
 app.use(cors({
     origin: (origin, callback) => callback(null, true),
     credentials: true,
@@ -19,33 +20,65 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Database Connection Helper
+let isConnected = false;
+const connectDb = async () => {
+    if (isConnected && mongoose.connection.readyState === 1) {
+        return;
+    }
+    
+    const mongoUri = process.env.MONGODB_URI;
+    if (!mongoUri) {
+        console.error('MONGODB_URI is not defined in environment variables');
+        throw new Error('Database configuration error');
+    }
+
+    try {
+        console.log('Attempting to connect to MongoDB...');
+        await mongoose.connect(mongoUri);
+        isConnected = true;
+        console.log('Successfully connected to MongoDB');
+    } catch (error) {
+        console.error('Failed to connect to MongoDB:', error);
+        throw error;
+    }
+};
+
+// Health check (Independent of DB)
+app.get('/health', (req, res) => {
+    res.json({ 
+        status: 'ok', 
+        database: isConnected ? 'connected' : 'disconnected',
+        env: process.env.NODE_ENV
+    });
+});
+
+// Database connection middleware (Lazy connect)
+app.use(async (req, res, next) => {
+    try {
+        await connectDb();
+        next();
+    } catch (error: any) {
+        console.error('DB Middleware Error:', error);
+        res.status(500).json({ 
+            error: 'Database connection failed', 
+            details: error.message 
+        });
+    }
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/repos', repoRoutes);
 
-// Basic health check
-app.get('/health', (req, res) => {
-    res.json({ status: 'ok' });
-});
+// Initial start log
+console.log('App successfully initialized. Waiting for requests...');
 
-const startServer = async () => {
-    try {
-        const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/explain-my-codebase';
-        await mongoose.connect(mongoUri);
-        console.log('Connected to MongoDB');
+// Local server for development
+if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Development server running on port ${PORT}`);
+    });
+}
 
-        if (!process.env.VERCEL) {
-          app.listen(PORT, () => {
-              console.log(`Server running on port ${PORT}`);
-          });
-        }
-    } catch (error) {
-        console.error('Failed to start server:', error);
-        if (!process.env.VERCEL) {
-          process.exit(1);
-        }
-    }
-};
-
-startServer();
 export default app;
