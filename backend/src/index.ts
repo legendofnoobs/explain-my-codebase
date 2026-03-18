@@ -34,12 +34,16 @@ const startServer = async () => {
         await mongoose.connect(mongoUri);
         console.log('Connected to MongoDB');
 
-        app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
-        });
+        if (!process.env.VERCEL) {
+          app.listen(PORT, () => {
+              console.log(`Server running on port ${PORT}`);
+          });
+        }
     } catch (error) {
         console.error('Failed to start server:', error);
-        process.exit(1);
+        if (!process.env.VERCEL) {
+          process.exit(1);
+        }
     }
 };
 
