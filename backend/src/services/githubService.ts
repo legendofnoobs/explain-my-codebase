@@ -7,7 +7,7 @@ const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN
 });
 
-export const getRepoTree = async (owner: string, repo: string, branch: string = 'main') => {
+export const getRepoTree = async (owner: string, repo: string, branch: string = 'main'): Promise<any[]> => {
     try {
         // Get the latest commit SHA for the branch
         const { data: refData } = await octokit.rest.git.getRef({
