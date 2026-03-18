@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-bg: #020617;
+  --color-surface-card: #0f172a;
+  --color-accent-action: #2563eb;
+  --color-accent-ai: #6366f1;
+  --color-text-hero: #f8fafc;
+  --color-text-body: #94a3b8;
+  --color-border-clean: #1e293b;
+  
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-pill: 9999px;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --foreground-rgb: 248, 250, 252;
+  --background-start-rgb: 2, 6, 23;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: var(--color-primary-bg);
+  font-family: var(--font-sans);
+}
+
+/* Glassmorphism Utility */
+.glass {
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(30, 41, 59, 0.5);
+}
+
+/* Dynamic Depth Glows */
+.glow-indigo {
+  filter: blur(80px);
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.glow-blue {
+  filter: blur(80px);
+  background: rgba(37, 99, 235, 0.15);
+}
+
+/* Custom Scrollbar for Dark Mode */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(51, 65, 85, 0.8);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(71, 85, 105, 1);
+}
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(51, 65, 85, 0.8) rgba(15, 23, 42, 0.5);
+}
