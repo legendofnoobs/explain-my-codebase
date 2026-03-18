@@ -1,4 +1,4 @@
-import type { IFileNode } from "../models/Repository.ts";
+import type { IFileNode } from "../models/Repository.js";
 
 export const buildFileTree = (githubTree: any[]): IFileNode[] => {
     const root: any = [];

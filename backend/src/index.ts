@@ -3,8 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
-import repoRoutes from './routes/repoRoutes.ts';
-import authRoutes from './routes/authRoutes.ts';
+import repoRoutes from './routes/repoRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();
 

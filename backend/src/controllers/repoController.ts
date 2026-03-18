@@ -1,10 +1,10 @@
 import type { Request, Response } from 'express';
-import { Repository } from '../models/Repository.ts';
-import { Explanation } from '../models/Explanation.ts';
-import User from '../models/User.ts';
-import * as githubService from '../services/githubService.ts';
-import * as repoAnalyzer from '../services/repoAnalyzer.ts';
-import * as aiService from '../services/aiService.ts';
+import { Repository } from '../models/Repository.js';
+import { Explanation } from '../models/Explanation.js';
+import User from '../models/User.js';
+import * as githubService from '../services/githubService.js';
+import * as repoAnalyzer from '../services/repoAnalyzer.js';
+import * as aiService from '../services/aiService.js';
 
 interface AuthRequest extends Request {
   user?: any;

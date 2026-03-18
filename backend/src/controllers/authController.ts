@@ -1,7 +1,7 @@
 import express from 'express';
 import type { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import User from '../models/User.ts';
+import User from '../models/User.js';
 
 const generateToken = (id: string) => {
   return jwt.sign({ id }, process.env.JWT_SECRET || 'fallback_secret', {
