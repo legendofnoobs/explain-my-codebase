@@ -57,13 +57,13 @@ export const ExplanationSidebar: React.FC<ExplanationSidebarProps> = ({
               <Sparkles size={20} />
             </div>
             <div>
-              <h2 className="text-sm font-bold text-white uppercase tracking-widest">AI Folder Insight</h2>
+              <h2 className="text-sm font-bold text-white uppercase tracking-widest">AI Insight</h2>
               {activePath || isLoadingFile ? (
                  <p className="text-xs font-mono text-slate-400 mt-0.5 truncate max-w-[250px]" title={isLoadingFile || activePath}>
                    {isLoadingFile || activePath || '/ (root)'}
                  </p>
               ) : (
-                <p className="text-xs text-slate-500 mt-0.5">Select a folder to analyze</p>
+                <p className="text-xs text-slate-500 mt-0.5">Select a folder or file to analyze</p>
               )}
             </div>
           </div>
@@ -109,7 +109,7 @@ export const ExplanationSidebar: React.FC<ExplanationSidebarProps> = ({
                 <p className="text-sm font-medium text-slate-400 animate-pulse">Analyzing folder contents and architecture...</p>
               </div>
             ) : activeText ? (
-              <div className="prose prose-invert prose-sm md:prose-base max-w-none text-slate-300 leading-relaxed">
+              <div className="prose prose-invert prose-sm md:prose-base max-w-none text-slate-300 leading-relaxed text-sm">
                 <ReactMarkdown>{activeText}</ReactMarkdown>
               </div>
             ) : (
@@ -120,7 +120,7 @@ export const ExplanationSidebar: React.FC<ExplanationSidebarProps> = ({
                 <div>
                   <h3 className="text-lg font-bold text-white">No Insight Selected</h3>
                   <p className="text-sm text-slate-400 max-w-[250px] mx-auto mt-2">
-                    Click the "✨ AI" button next to any folder in the tree to generate a deep architectural breakdown. You can switch between analyzed folders using the history tabs above.
+                    Click the "✨ AI" button next to any folder in the tree to generate a deep architectural breakdown or open code file to generate code explanation. You can switch between analyzed folders or files using the history tabs above.
                   </p>
                 </div>
               </div>

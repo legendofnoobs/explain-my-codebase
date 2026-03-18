@@ -155,16 +155,26 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500/30">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 glass">
-        <div className="max-w-[1600px] mx-auto px-8 h-20 flex items-center justify-between">
+      <div className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1600px] z-30">
+        <nav className="glass rounded-lg border border-white/10 px-8 h-20 flex items-center justify-between shadow-2xl backdrop-blur-xl">
           <div className="flex items-center gap-3 group cursor-pointer" onClick={() => router.push('/')}>
             <div className="w-10 h-10 bg-accent-action rounded-lg flex items-center justify-center shadow-lg shadow-accent-action/20 group-hover:scale-110 transition-transform">
               <Code2 className="text-white" size={24} />
             </div>
-            <span className="text-xl font-bold tracking-tight text-text-hero">ExplainMyCode</span>
+            <span className="text-xl font-bold tracking-tight text-text-hero">RepoLens</span>
           </div>
 
           <div className="flex items-center gap-6">
+            <a 
+              href="https://github.com/legendofnoobs/explain-my-codebase" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 text-text-body hover:text-text-hero transition-colors"
+              title="View on GitHub"
+            >
+              <Github size={20} />
+            </a>
+            <div className="h-6 w-px bg-white/10" />
             <div className="flex items-center gap-4">
               <div className="text-right hidden sm:block">
                 <div className="text-sm font-bold text-text-hero">{user.name}</div>
@@ -189,8 +199,8 @@ export default function Dashboard() {
               Logout
             </button>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
       <main className="pt-32 pb-20 px-8 max-w-[1600px] mx-auto w-full flex flex-col gap-2">
         {/* Header Section */}
@@ -272,19 +282,18 @@ export default function Dashboard() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto py-12 px-8 border-t-2 border-border-clean bg-surface-card/50">
+      <footer className="mt-auto py-12 px-8 border-t-2 border-border-clean bg-surface-card/20">
         <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 bg-accent-action/20 rounded-md flex items-center justify-center">
               <Code2 className="text-accent-action" size={14} />
             </div>
-            <span className="text-sm font-bold text-text-hero">ExplainMyCode</span>
+            <span className="text-sm font-bold text-text-hero tracking-tighter uppercase italic">RepoLens AI</span>
           </div>
-          <div className="text-xs text-text-body font-medium">© {new Date().getFullYear()} ExplainMyCode AI. Built for developers.</div>
-          <div className="flex gap-6 text-xs font-semibold text-text-body">
-            <a href="#" className="hover:text-text-hero transition-colors">Documentation</a>
-            <a href="#" className="hover:text-text-hero transition-colors">API</a>
-            <a href="#" className="hover:text-text-hero transition-colors">Support</a>
+          <div className="text-[10px] text-text-body font-bold uppercase tracking-widest opacity-50">© {new Date().getFullYear()} RepoLens. Neural Engine v1.0.4</div>
+          <div className="flex gap-6 text-[10px] font-bold text-text-body uppercase tracking-widest">
+            <a href="#" className="hover:text-accent-action transition-colors">Documentation</a>
+            <a href="#" className="hover:text-accent-action transition-colors">System Status</a>
           </div>
         </div>
       </footer>

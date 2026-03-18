@@ -9,8 +9,8 @@ import { AuthProvider } from "@/context/AuthContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Explain My Codebase",
-    description: "AI-powered codebase analysis and visualization",
+    title: "RepoLens",
+    description: "AI-powered repository analysis and visualization",
 };
 
 export default function RootLayout({

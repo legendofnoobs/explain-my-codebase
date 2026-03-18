@@ -21,14 +21,34 @@ if (typeof window !== 'undefined') {
 }
 
 const Mermaid = ({ chart }: { chart: string }) => {
+  const [mounted, setMounted] = React.useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (ref.current && chart) {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && ref.current && chart) {
       ref.current.removeAttribute('data-processed');
-      mermaid.contentLoaded();
+      try {
+        mermaid.contentLoaded();
+      } catch (err) {
+        console.error('Mermaid render failed:', err);
+      }
     }
-  }, [chart]);
+  }, [chart, mounted]);
+
+  if (!mounted) {
+    return (
+      <div className="bg-slate-950 p-8 rounded-lg border border-slate-800 flex items-center justify-center h-64">
+        <div className="animate-pulse flex flex-col items-center gap-3">
+          <div className="w-12 h-12 bg-slate-800 rounded-full" />
+          <div className="h-2 w-32 bg-slate-800 rounded" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mermaid bg-slate-950 p-4 rounded-lg border border-slate-800 shadow-inner overflow-x-auto" ref={ref}>
@@ -147,7 +167,7 @@ export const ArchitectureSummary = ({ summary }: { summary: IArchitectureSummary
                 </tr>
               </thead>
               <tbody className="divide-y border-border-clean/50">
-                {summary.architecturalTradeoffs.map((tradeoff, i) => (
+                {summary.architecturalTradeoffs?.map((tradeoff, i) => (
                   <tr key={i} className="hover:bg-accent-action/5 transition-colors group/row">
                     <td className="px-6 py-5">
                       <div className="font-mono text-[11px] font-bold text-text-hero bg-surface-card border border-border-clean px-3 py-1.5 rounded-lg inline-block group-hover/row:border-accent-action/30 transition-colors">

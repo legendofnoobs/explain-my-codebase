@@ -14,22 +14,22 @@ api.interceptors.request.use((config) => {
 });
 
 export const authApi = {
-    getProfile: () => api.get('/auth/profile'),
-    updateApiKey: (geminiApiKey: string) => api.put('/auth/update-key', { geminiApiKey }),
+    getProfile: () => api.get('/api/auth/profile'),
+    updateApiKey: (geminiApiKey: string) => api.put('/api/auth/update-key', { geminiApiKey }),
 };
 
 export const repoApi = {
-    importRepo: (url: string) => api.post('/repos/import', { url }),
-    getAllRepos: () => api.get('/repos'),
-    getRepo: (id: string) => api.get(`/repos/${id}`),
-    getAllExplanations: (id: string) => api.get(`/repos/${id}/explanations`),
+    importRepo: (url: string) => api.post('/api/repos/import', { url }),
+    getAllRepos: () => api.get('/api/repos'),
+    getRepo: (id: string) => api.get(`/api/repos/${id}`),
+    getAllExplanations: (id: string) => api.get(`/api/repos/${id}/explanations`),
     getExplanation: (id: string, path: string) =>
-        api.get(`/repos/${id}/explanation`, { params: { path } }),
+        api.get(`/api/repos/${id}/explanation`, { params: { path } }),
     getFileContent: (id: string, path: string) =>
-        api.get(`/repos/${id}/file`, { params: { path } }),
+        api.get(`/api/repos/${id}/file`, { params: { path } }),
     getFileExplanation: (id: string, path: string) =>
-        api.get(`/repos/${id}/file-explanation`, { params: { path } }),
-    deleteRepo: (id: string) => api.delete(`/repos/${id}`),
+        api.get(`/api/repos/${id}/file-explanation`, { params: { path } }),
+    deleteRepo: (id: string) => api.delete(`/api/repos/${id}`),
 };
 
 export default api;

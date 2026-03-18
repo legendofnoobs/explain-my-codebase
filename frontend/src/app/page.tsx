@@ -11,7 +11,8 @@ import {
   Component,
   ChevronRight,
   LayoutTemplate,
-  X
+  X,
+  Github
 } from 'lucide-react';
 
 export default function Home() {
@@ -24,21 +25,32 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-primary-bg text-text-hero flex flex-col font-sans selection:bg-accent-ai/30">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 glass">
-        <div className="max-w-[1600px] mx-auto px-8 h-20 flex items-center justify-between">
+      <div className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1600px] z-30">
+        <nav className="glass rounded-lg border border-white/10 px-8 h-20 flex items-center justify-between shadow-2xl backdrop-blur-xl">
           <div className="flex items-center gap-3 group cursor-pointer" onClick={() => router.push('/')}>
             <div className="w-10 h-10 bg-accent-action rounded-lg flex items-center justify-center shadow-lg shadow-accent-action/20 group-hover:scale-110 transition-transform">
               <Code2 className="text-white" size={24} />
             </div>
-            <span className="text-xl font-bold tracking-tight text-text-hero">ExplainMyCode</span>
+            <span className="text-xl font-bold tracking-tight text-text-hero">RepoLens</span>
           </div>
           
           <div className="hidden md:flex items-center gap-8 text-sm font-bold text-text-body uppercase tracking-widest">
             <a href="#features" className="hover:text-text-hero transition-colors">Features</a>
-            <a href="#interface" className="hover:text-text-hero transition-colors">Interface</a>
+            <a href="#setup" className="hover:text-text-hero transition-colors">Setup</a>
+            <a href="/demo" className="hover:text-text-hero transition-colors">Demo</a>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
+            <a 
+              href="https://github.com/legendofnoobs/explain-my-codebase" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 text-text-body hover:text-text-hero transition-colors"
+              title="View on GitHub"
+            >
+              <Github size={20} />
+            </a>
+            <div className="h-6 w-px bg-white/10" />
             <button 
               onClick={navigateToDashboard}
               className="bg-accent-action hover:bg-accent-action/90 text-white text-xs font-bold px-8 py-3 rounded-lg transition-all shadow-lg shadow-accent-action/20 active:scale-95 uppercase tracking-widest"
@@ -46,8 +58,8 @@ export default function Home() {
               Get Started
             </button>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
       {/* Hero Section */}
       <section className="relative pt-48 pb-24 px-8 overflow-hidden">
@@ -106,7 +118,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pain Points / Stats Section */}
+      {/* Pain Points */}
       <section className="py-40 px-8 bg-surface-card/30">
         <div className="max-w-[1600px] mx-auto space-y-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
@@ -137,22 +149,14 @@ export default function Home() {
               </ul>
             </div>
             
-            <div className="lg:col-span-7 grid grid-cols-2 gap-6 h-fit">
-               <div className="bg-primary-bg border-4 border-border-clean p-10 rounded-lg flex flex-col justify-end space-y-3 h-72 hover:border-accent-action/30 transition-all">
-                  <span className="text-6xl font-black text-text-hero tracking-tighter">12h+</span>
-                  <span className="text-[10px] font-bold text-text-body uppercase tracking-[0.3em] italic">Avg. Onboarding</span>
-               </div>
-               <div className="bg-accent-action p-10 rounded-lg flex flex-col justify-end space-y-3 h-72 text-white shadow-2xl shadow-accent-action/20 group hover:scale-[1.02] transition-transform">
-                  <span className="text-6xl font-black tracking-tighter">1k+</span>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-80">Repos Analyzed Daily</span>
-               </div>
-               <div className="bg-accent-ai p-10 rounded-lg flex flex-col justify-end space-y-3 h-72 text-white shadow-2xl shadow-accent-ai/20 group hover:scale-[1.02] transition-transform">
-                  <span className="text-6xl font-black tracking-tighter">250ms</span>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-80 underline">AI Query Response</span>
-               </div>
-               <div className="bg-primary-bg border-4 border-border-clean p-10 rounded-lg flex flex-col justify-end space-y-3 h-72 hover:border-accent-ai/30 transition-all">
-                  <span className="text-6xl font-black text-text-hero tracking-tighter">98%</span>
-                  <span className="text-[10px] font-bold text-text-body uppercase tracking-[0.3em]">Accuracy Rate</span>
+            <div className="lg:col-span-7 relative group">
+               <div className="absolute -inset-2 glow-indigo opacity-10 blur-2xl group-hover:opacity-20 transition duration-1000"></div>
+               <div className="relative bg-surface-card border-4 border-border-clean rounded-lg overflow-hidden shadow-2xl">
+                  <img 
+                     src="/ai_insight.png" 
+                     alt="AI Insight" 
+                     className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                  />
                </div>
             </div>
           </div>
@@ -324,42 +328,54 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="pt-32 pb-16 px-8 border-t-4 border-border-clean">
+      <footer className="relative py-24 px-8 mt-24 overflow-hidden border-t border-border-clean/30">
+        {/* Modern Background Decor */}
+        <div className="absolute inset-0 bg-slate-950 -z-10">
+           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[1px] bg-gradient-to-r from-transparent via-accent-action/30 to-transparent" />
+        </div>
+        
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-16 mb-24">
-            <div className="col-span-2 space-y-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-accent-action rounded-lg flex items-center justify-center">
-                  <Code2 className="text-white" size={24} />
+          <div className="flex flex-col lg:flex-row justify-between items-start gap-16 mb-20">
+             <div className="space-y-8 max-w-md">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-accent-action rounded-lg flex items-center justify-center shadow-lg shadow-accent-action/20">
+                    <Code2 className="text-white" size={18} />
+                  </div>
+                  <span className="text-xl font-bold text-text-hero tracking-tighter uppercase italic">RepoLens AI</span>
                 </div>
-                <span className="text-2xl font-bold text-text-hero tracking-tight">ExplainMyCode</span>
-              </div>
-              <p className="text-text-body text-base max-w-sm font-medium leading-relaxed">
-                The leading AI-powered repository analyzer. Turn complex codebases into human-readable insights instantly.
-              </p>
-            </div>
-            
-            {[
-              { title: "Product", links: [{label: "Setup Guide", href: "#setup"}, {label: "Pricing", href: "#"}, {label: "Documentation", href: "#"}, {label: "Changelog", href: "#"}] },
-              { title: "Company", links: [{label: "About Us", href: "#"}, {label: "Blog", href: "#"}, {label: "Careers", href: "#"}, {label: "Privacy", href: "#"}] },
-              { title: "Resources", links: [{label: "GitHub Auth", href: "#"}, {label: "Community Hub", href: "#"}, {label: "Portal Docs", href: "#"}] },
-            ].map((col, i) => (
-              <div key={i} className="space-y-8">
-                <h4 className="text-text-hero font-bold text-xs uppercase tracking-[0.2em]">{col.title}</h4>
-                <ul className="space-y-5">
-                  {col.links.map((link, j) => (
-                    <li key={j}><a href={typeof link === 'string' ? '#' : link.href} className="text-text-body hover:text-accent-action transition-colors text-sm font-bold">{typeof link === 'string' ? link : link.label}</a></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+                <p className="text-sm text-text-body font-medium leading-relaxed opacity-70">
+                   The definitive intelligence layer for your engineering team. Context-aware repository analysis delivered through high-precision neural logic.
+                </p>
+             </div>
+
+             <div className="flex flex-wrap gap-x-16 gap-y-8 text-xs font-bold text-text-body uppercase tracking-[0.25em]">
+                <div className="flex flex-col gap-4">
+                   <h5 className="text-[10px] text-accent-ai opacity-50">Navigation</h5>
+                   <a href="#features" className="underline-offset-4 hover:underline hover:text-accent-action transition-all">Features</a>
+                   <a href="#interface" className="underline-offset-4 hover:underline hover:text-accent-action transition-all">Interface</a>
+                   <a href="#setup" className="underline-offset-4 hover:underline hover:text-accent-action transition-all">Setup</a>
+                </div>
+                <div className="flex flex-col gap-4">
+                   <h5 className="text-[10px] text-accent-ai opacity-50">Secure Connect</h5>
+                   <a href="https://github.com/legendofnoobs/explain-my-codebase" target="_blank" className="underline-offset-4 hover:underline hover:text-accent-action transition-all whitespace-nowrap">RepoLens Source Code</a>
+                   <a href="https://aistudio.google.com" target="_blank" className="underline-offset-4 hover:underline hover:text-accent-action transition-all">Google AI Studio</a>
+                </div>
+             </div>
           </div>
           
-          <div className="flex flex-col md:flex-row items-center justify-between pt-12 border-t-2 border-border-clean space-y-6 md:space-y-0">
-            <div className="text-xs text-text-body font-bold uppercase tracking-widest opacity-50">© {new Date().getFullYear()} ExplainMyCode AI. Built with love for developers.</div>
-            <div className="flex gap-6">
-               {[1, 2, 3].map(i => <div key={i} className="w-6 h-6 bg-surface-card border border-border-clean rounded transition-colors hover:border-accent-action/50 cursor-pointer" />)}
-            </div>
+          <div className="pt-10 border-t border-border-clean/50 flex flex-col md:flex-row items-center justify-between gap-6">
+             <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/5 border border-emerald-500/20">
+                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]" />
+                   <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">All Systems Operational</span>
+                </div>
+             </div>
+
+             <div className="text-[10px] text-text-body/40 font-bold uppercase tracking-[0.3em] flex items-center gap-4">
+                <span>© {new Date().getFullYear()} RepoLens</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-border-clean/30" />
+                <span>Neural Engine v1.0.4</span>
+             </div>
           </div>
         </div>
       </footer>

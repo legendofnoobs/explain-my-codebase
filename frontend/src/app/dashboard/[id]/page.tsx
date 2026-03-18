@@ -8,11 +8,13 @@ import { CodeModal } from '../../../components/CodeModal';
 import { ExplanationSidebar } from '../../../components/ExplanationSidebar';
 import { repoApi } from '../../../lib/api';
 import { IRepository } from '../../../types';
-import { Loader2, AlertCircle, X, Github, Sparkles } from 'lucide-react';
+import { Loader2, AlertCircle, X, Github, Sparkles, Code2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import { toast } from 'react-hot-toast';
 
 export default function Dashboard() {
+  const router = useRouter();
   const { id } = useParams();
   const [repo, setRepo] = useState<IRepository | null>(null);
   const [loading, setLoading] = useState(true);
@@ -122,31 +124,53 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen pb-20">
       {/* Header-like top bar */}
-      <nav className="glass px-8 h-20 fixed w-full top-0 z-40 shadow-2xl">
-        <div className="max-w-[1600px] mx-auto h-full flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <h1 className="text-xl font-bold text-text-hero">
-              <a href={`https://github.com/${repo.owner}/${repo.name}`} target="_blank" rel="noopener noreferrer" className="hover:text-accent-action transition-colors">
-                {repo.name}
-              </a>
-            </h1>
-            <a href={`https://github.com/${repo.owner}`} target="_blank" rel="noopener noreferrer" className="px-2 py-0.5 bg-surface-card border-2 border-border-clean text-text-body text-[10px] rounded-md font-mono uppercase tracking-widest hover:text-text-hero transition-colors">by {repo.owner}</a>
+      <div className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1600px] z-30">
+        <nav className="glass rounded-lg border border-white/10 px-8 h-20 flex items-center justify-between shadow-2xl backdrop-blur-xl">
+          <div className="flex items-center gap-6">
+            <a 
+              href="https://github.com/legendofnoobs/explain-my-codebase" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 text-text-body hover:text-text-hero transition-colors"
+              title="View on GitHub"
+            >
+              <Github size={20} />
+            </a>
+            <div className="h-6 w-px bg-white/10" />
+            <div className="flex items-center gap-3 group cursor-pointer" onClick={() => router.push('/')}>
+              <div className="w-10 h-10 bg-accent-action rounded-lg flex items-center justify-center shadow-lg shadow-accent-action/20 group-hover:scale-110 transition-transform">
+                <Code2 className="text-white" size={24} />
+              </div>
+              <span className="text-xl font-bold tracking-tight text-text-hero">RepoLens</span>
+            </div>
+            
+            <div className="h-8 w-px bg-white/10 hidden md:block" />
+
+            <div className="hidden md:flex items-center gap-3">
+              <h1 className="text-lg font-bold text-text-hero tracking-tight">
+                <a href={`https://github.com/${repo.owner}/${repo.name}`} target="_blank" rel="noopener noreferrer" className="hover:text-accent-action transition-colors">
+                  {repo.name}
+                </a>
+              </h1>
+              <a href={`https://github.com/${repo.owner}`} target="_blank" rel="noopener noreferrer" className="px-2 py-0.5 bg-surface-card border border-border-clean text-text-body text-[10px] rounded-md font-mono uppercase tracking-widest hover:text-text-hero transition-colors opacity-70">by {repo.owner}</a>
+            </div>
           </div>
+          
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg bg-accent-ai/10 text-accent-ai hover:bg-accent-ai/20 border-2 border-accent-ai/20 transition-all uppercase tracking-widest"
+              className="flex items-center gap-2 px-5 py-2.5 text-[10px] font-black rounded-lg bg-accent-ai/10 text-accent-ai hover:bg-accent-ai/20 border border-accent-ai/20 transition-all uppercase tracking-widest"
             >
-              <Sparkles size={16} /> AI Insight Panel
+              <Sparkles size={14} /> AI Insight Panel
             </button>
-            <a href="/dashboard" className="text-xs font-bold text-white bg-accent-action px-6 py-2 rounded-lg hover:bg-accent-action/90 transition-all shadow-lg shadow-accent-action/20 uppercase tracking-widest">Pick another repo</a>
+            <a href="/dashboard" className="text-[10px] font-black text-white bg-accent-action px-6 py-2.5 rounded-lg hover:bg-accent-action/90 transition-all shadow-lg shadow-accent-action/20 uppercase tracking-widest whitespace-nowrap">Pick another repo</a>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
-      <main className="w-full px-4 sm:px-8 mt-20 grid grid-cols-1 lg:grid-cols-12 gap-8 relative max-w-[1600px] mx-auto items-start">
+      <main className="w-full px-4 sm:px-8 mt-32 grid grid-cols-1 lg:grid-cols-12 gap-8 relative max-w-[1600px] mx-auto items-start">
         {/* Left Column: File Tree */}
-        <div className="lg:col-span-3 space-y-6 relative z-10 lg:sticky lg:top-24">
+        <div className="lg:col-span-3 space-y-6 relative z-10 lg:sticky lg:top-36">
           <FileTree
             tree={repo.fileTree}
             onFolderClick={handleFolderClick}
