@@ -104,7 +104,7 @@ export default function Home() {
             <div className="relative bg-surface-card border-4 border-border-clean rounded-lg overflow-hidden shadow-2xl cursor-pointer" onClick={navigateToDashboard}>
               <img 
                 src="/Preview.png" 
-                alt="Product Preview" 
+                alt="RepoLens Full Dashboard Interface Preview" 
                 className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
               />
               
@@ -154,7 +154,7 @@ export default function Home() {
                <div className="relative bg-surface-card border-4 border-border-clean rounded-lg overflow-hidden shadow-2xl">
                   <img 
                      src="/ai_insight.png" 
-                     alt="AI Insight" 
+                     alt="AI-Generated Architectural Insights and Mermaid Diagrams" 
                      className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
                   />
                </div>

@@ -1,7 +1,7 @@
 {
-  "name": "explain-my-codebase-backend",
+  "name": "repolens-backend",
   "version": "1.0.0",
-  "description": "Backend for Explain My Codebase MVP",
+  "description": "Backend for RepoLens MVP",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
