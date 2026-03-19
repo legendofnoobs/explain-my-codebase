@@ -122,7 +122,7 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-16">
       {/* Header-like top bar */}
       <div className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1600px] z-30">
         <nav className="glass rounded-lg border border-white/10 px-8 h-20 flex items-center justify-between shadow-2xl backdrop-blur-xl">
@@ -170,7 +170,7 @@ export default function Dashboard() {
 
       <main className="w-full px-4 sm:px-8 mt-32 grid grid-cols-1 lg:grid-cols-12 gap-8 relative max-w-[1600px] mx-auto items-start">
         {/* Left Column: File Tree */}
-        <div className="lg:col-span-3 space-y-6 relative z-10 lg:sticky lg:top-36">
+        <div className="lg:col-span-3 space-y-6 relative z-10 lg:sticky lg:top-32">
           <FileTree
             tree={repo.fileTree}
             onFolderClick={handleFolderClick}

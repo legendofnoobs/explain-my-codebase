@@ -7,7 +7,8 @@ import {
   ShieldCheck, TrendingUp, Zap, Box,
   Activity, Database, Globe, Wrench,
   CornerUpRight, HardDrive, BarChart3,
-  ThumbsUp, ThumbsDown
+  ThumbsUp, ThumbsDown,
+  Grip
 } from 'lucide-react';
 
 // Initialize mermaid
@@ -81,10 +82,10 @@ export const ArchitectureSummary = ({ summary }: { summary: IArchitectureSummary
   ];
 
   return (
-    <div className="bg-surface-card rounded-lg border-2 border-border-clean overflow-hidden shadow-2xl transition-all animate-in fade-in slide-in-from-right duration-500 mt-4">
+    <div className="bg-surface-card rounded-lg border-2 border-border-clean overflow-hidden shadow-2xl transition-all animate-in fade-in slide-in-from-right duration-500">
       
       {/* Header Section */}
-      <div className="bg-surface-card p-8 text-text-hero relative overflow-hidden">
+      <div className="bg-surface-card p-8 text-text-hero relative overflow-hidden pb-0">
         <div className="absolute top-0 right-0 w-64 h-64 glow-blue opacity-20 -mr-32 -mt-32" />
         <div className="relative z-10">
           <div className="flex items-center gap-4 mb-6">
@@ -109,9 +110,8 @@ export const ArchitectureSummary = ({ summary }: { summary: IArchitectureSummary
       </div>
 
       <div className="p-8 space-y-12">
-
         {/* Tech Stack */}
-        <section className="space-y-4">
+        <section className="space-y-4 mb-6">
           <div className="flex flex-wrap gap-3 items-center">
             <span className="text-[10px] font-bold text-text-body uppercase tracking-[0.2em]">Core Tech Stack:</span>
             {summary.techStack && summary.techStack.length > 0 ? (
@@ -122,13 +122,29 @@ export const ArchitectureSummary = ({ summary }: { summary: IArchitectureSummary
                 </span>
               ))
             ) : (
-              <span className="text-[11px] italic text-text-body">Scanning manifest...</span>
+              <span className="text-[11px] italic text-text-body">Could not generate tech stack.</span>
             )}
           </div>
         </section>
 
+        {/* Individual Design patterns Section with whitespace-pre-wrap */}
+        <div className="space-y-3 group bg-primary-bg/30 p-6 rounded-lg border border-border-clean/50 hover:border-accent-action/30 transition-all mb-6">
+          <h4 className="text-xs font-bold text-text-body uppercase tracking-widest flex items-center gap-2 border-b border-border-clean pb-4">
+            <Grip className="text-accent-action" size={18} /> Detected Design Patterns
+          </h4>
+          <div className="text-sm text-text-body leading-relaxed prose prose-invert max-w-none prose-sm whitespace-pre-wrap">
+            {summary.designPatterns ? 
+            <ul className='flex flex-wrap gap-2'>
+              {summary.designPatterns.map((pattern, i) => (
+                <li className='bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 px-2 py-1 rounded-lg' key={i}>{pattern}</li>
+              ))}
+            </ul> 
+            : <span className="text-[11px] italic text-text-body">Could not generate design patterns.</span>}
+          </div>
+        </div>
+
         {/* Individual API Design Section with whitespace-pre-wrap */}
-        <div className="space-y-3 group bg-primary-bg/30 p-6 rounded-lg border border-border-clean/50 hover:border-accent-action/30 transition-all">
+        <div className="space-y-3 group bg-primary-bg/30 p-6 rounded-lg border border-border-clean/50 hover:border-accent-action/30 transition-all mb-6">
           <h4 className="text-xs font-bold text-text-body uppercase tracking-widest flex items-center gap-2 border-b border-border-clean pb-4">
             <Globe className="text-accent-action" size={18} /> API Design
           </h4>
